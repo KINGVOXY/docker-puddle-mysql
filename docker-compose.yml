@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+    db:
+        image: mysql:8.0
+        container_name: mysql_host
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: test_database
+            MYSQL_USER: docker
+            MYSQL_PASSWORD: docker
+            TZ: 'Asia/Tokyo'
+        command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+        volumes:
+        - ./docker/db/data:/var/lib/mysql
+        - ./docker/db/config/my.cnf:/etc/mysql/conf.d/my.cnf
+        - ./docker/db/sql:/docker-entrypoint-initdb.d
+        ports:
+        - 3306:3306
+
+    puddle:
+        image: denoland/deno:1.16.1
+        container_name: puddle_app
+        working_dir: /app
+        command: deno run --allow-net --allow-read --allow-write server.ts
+        volumes:
+        - ./app:/app
+        ports:
+        - 8080:8080

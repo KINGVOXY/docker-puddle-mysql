@@ -1,0 +1,3 @@
+docker/db/config/my.cnf/
+docker/db/config/data/
+app/log/
