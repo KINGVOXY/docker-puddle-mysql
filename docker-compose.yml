@@ -22,7 +22,7 @@ services:
         image: denoland/deno:1.16.1
         container_name: puddle_app
         working_dir: /app
-        command: deno run --allow-net --allow-read --allow-write server.ts
+        tty: true
         volumes:
         - ./app:/app
         ports:
