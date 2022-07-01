@@ -1,3 +1,5 @@
 docker/db/config/my.cnf/
 docker/db/config/data/
 app/log/
+docker/db/data/
+!docker/db/data/.gitkeep
