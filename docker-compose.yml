@@ -12,19 +12,19 @@ services:
             TZ: 'Asia/Tokyo'
         command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
         volumes:
-        - ./docker/db/data:/var/lib/mysql
-        - ./docker/db/config/my.cnf:/etc/mysql/conf.d/my.cnf
-        - ./docker/db/sql:/docker-entrypoint-initdb.d
+            - ./docker/db/data:/var/lib/mysql
+            - ./docker/db/config/my.cnf:/etc/mysql/conf.d/my.cnf
+            - ./docker/db/sql:/docker-entrypoint-initdb.d
         ports:
-        - 3306:3306
+            - 3306:3306
 
     puddle:
-        image: denoland/deno:1.16.1
+        image: denoland/deno:1.17.3
         container_name: puddle_app
         working_dir: /app
         volumes:
-        - ./app:/app
+            - ./app:/app
         ports:
-        - 8080:8080
+            - 8080:8080
         command: /bin/bash
         tty: true
